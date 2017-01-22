@@ -1,14 +1,20 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v4.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.Joker;
+import com.example.jokedisplaylibrary.JokeDisplayActivity;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements OnTaskCompleted{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +46,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Toast.makeText(this, "derp", Toast.LENGTH_SHORT).show();
+      /*  Joker joker=new Joker();
+       String joke= joker.getJoke();
+        Toast.makeText(this, joke, Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this, JokeDisplayActivity.class);
+        intent.putExtra(Constant.JOKE_VALUE,joke);
+        startActivity(intent);*/
+
+        new EndpointsAsyncTask(this).execute(new Pair<Context, String>(this, "Manfred"));
     }
 
 
+    @Override
+    public void onTaskCompleted(String result) {
+
+        Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+        Intent intent=new Intent(this, JokeDisplayActivity.class);
+        intent.putExtra(Constant.JOKE_VALUE,result);
+        startActivity(intent);
+
+    }
 }
