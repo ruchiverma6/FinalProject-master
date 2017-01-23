@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Gradle for Android and Java Final Project
 
 In this project, you will create an app with multiple flavors that uses
@@ -145,3 +146,6 @@ Once you have a functioning project, consider adding more features to test your 
 =======
 # Final-Project
 >>>>>>> 0209dc154c0af152beff1e843b3ce58c7b353ccb
+=======
+# FinalProject-master
+>>>>>>> 3e4e59df76e21ac7b865d4ccd3c271a967086e4e
