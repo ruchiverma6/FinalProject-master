@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.jokedisplaylibrary.JokeDisplayActivity;
 import com.google.android.gms.ads.AdListener;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.setAdUnitId(getString(R.string.addunitid));
 
         mInterstitialAd.setAdListener(new AdListener() {
             @Override
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 }
            navigteToJokeDisplayActivity(result);
             }
-        }).execute(new Pair<Context, String>(context, "Manfred"));
+        }).execute(new Pair<Context, String>(context, "Joking.."));
     }
 
     private void navigteToJokeDisplayActivity(String result) {

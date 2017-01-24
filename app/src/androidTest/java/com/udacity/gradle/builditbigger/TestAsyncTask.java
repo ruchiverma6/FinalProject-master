@@ -1,10 +1,15 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
+import android.support.v4.util.Pair;
+
 import junit.framework.Assert;
 
 import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
+
+import static android.support.test.InstrumentationRegistry.getContext;
 
 /**
  * Created by ruchi on 22/1/17.
@@ -26,7 +31,7 @@ public class TestAsyncTask {
                 Assert.assertNotNull(result);
                 signal.countDown();// notify the count down latch
             }
-        }).execute();
+        }).execute(new Pair<Context, String>(getContext(), getContext().getString(R.string.joking_msg)));
 
         try {
             signal.await();// wait for callback

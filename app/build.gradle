@@ -11,6 +11,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    lintOptions {
+        abortOnError false
     }
     buildTypes {
         release {
@@ -44,4 +48,18 @@ dependencies {
     compile project(path: ':backend', configuration: 'android-endpoints')
     compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.34'
     testCompile 'junit:junit:4.12'
+}
+
+task startGCEAndTest(type: GradleBuild) {
+    dependsOn ":backend:appengineRun"
+    project(":backend").afterEvaluate { backend ->
+        backend.extensions.appengine.daemon = true
+    }
+
+    tasks = [':app:connectedAndroidTest']
+}
+
+task runAppEngineAndTest(type: GradleBuild) {
+    dependsOn "startGCEAndTest"
+    tasks = [":backend:appengineStop"]
 }
