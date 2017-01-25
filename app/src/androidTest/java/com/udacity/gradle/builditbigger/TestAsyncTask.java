@@ -23,7 +23,7 @@ public class TestAsyncTask {
     }
 
     @Test
-    public void testSomething(){
+    public void testEndpointsAsyncTask(){
         final CountDownLatch signal = new CountDownLatch(1);
         new EndpointsAsyncTask(new OnTaskCompleted() {
             @Override
@@ -31,7 +31,7 @@ public class TestAsyncTask {
                 Assert.assertNotNull(result);
                 signal.countDown();// notify the count down latch
             }
-        }).execute(new Pair<Context, String>(getContext(), getContext().getString(R.string.joking_msg)));
+        }).execute(new Pair<Context, String>(getContext(), "Joking..."));
 
         try {
             signal.await();// wait for callback
